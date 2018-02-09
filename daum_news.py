@@ -14,7 +14,7 @@ from datetime import datetime
 
 import sqlite3 as lite
 
-
+import re
 
 
 
@@ -34,7 +34,7 @@ now = []
 titlelist = []
 # 기사 제목 리스트
 hreflist = []
-# 기사 주소 리스트
+# 기사 주소 리스
 
 b = 0
 
@@ -58,12 +58,24 @@ while True:
 
 
     for i in range(len(a)):
-        html = requests.get('http://search.daum.net/search?w=news&q={0}&spacing=0'.format(a[i])).text
-        # 구글 뉴스 '경제' 파트에서 검색 -- 한글 ver.
+        html = requests.get('http://search.daum.net/search?w=tot&DA=23A&rtmaxcoll=NNS&q={0}&spacing=0'.format(a[i])).text
+
         soup = BeautifulSoup(html,'html.parser')
         lists = soup.select('.f_link_b')
 
         now.append(datetime.now())
+
+        new_coll = soup.find(id='newsColl')
+        news_ul = new_coll.find(id="clusterResultUL")
+
+        for li in news_ul.find_all('li'):
+            date_tag = li.find(class_='f_nb date')
+
+        parse = re.sub('[|]', '', date_tag.text)
+        string = re.sub('[^0-9]', '',parse)
+        string =int(string)
+        print(string)
+
         # 키워드 당 검색하는 시간 추가(검색 키워드 : 시간 = 1 : 1)
 
         for tag in lists:
@@ -84,14 +96,17 @@ while True:
         print('========================================{0}========================================'.format(a[i]))
         # 해당 키워드까지 검색 완료
 
-    for i1 in range(len(titlelist)):
-        # print(titlelist[i1])
-        # titlelist(기사 제목 모음)에 있는 모든 제목 가져오기
-        countsum = 0
-        # 제목 당 키워드 셀 때 쓰는 숫자 초기화
-        for i2 in range(len(a)):
-            countsum += titlelist[i1].count(a[i2])
-            # 기사제목에 있는 키워드 갯수 세기
+
+
+    if (string<=5):
+        for i1 in range(len(titlelist)):
+            # print(titlelist[i1])
+            # titlelist(기사 제목 모음)에 있는 모든 제목 가져오기
+            countsum = 0
+            # 제목 당 키워드 셀 때 쓰는 숫자 초기화
+            for i2 in range(len(a)):
+                countsum += titlelist[i1].count(a[i2])
+                # 기사제목에 있는 키워드 갯수 세기
 
 
 
@@ -104,7 +119,7 @@ while True:
 
     print(now[-1])
     print("총 기사 갯수 :  {0}".format(len(titlelist)))
-    print("Warning 기수 갯수 : {0}".format(howmany))
+    print("Warning 기사 갯수 : {0}".format(howmany))
 
     # f = open('test.txt', 'w')
     # for write in range(len(titlelist)):
@@ -113,18 +128,16 @@ while True:
 
     # f.close()
 
-    time.sleep(300)
+    time.sleep(3)
     # 5초 후 다시 검색
 
 
-
-
-    chars = len(titlelist)
-    # for b in range(len(chars)):
-    query = "INSERT into t1 values (?, ?, DATETIME('NOW','LOCALTIME'))"
-    cs.execute(query,(b, chars))
-    conn.commit()
-    b += 1
+    # chars = len(titlelist)
+    # # for b in range(len(chars)):
+    # query = "INSERT into t1 values (?, ?, DATETIME('NOW','LOCALTIME'))"
+    # cs.execute(query,(b, chars))
+    # conn.commit()
+    # b += 1
 
 cs.close()
 conn.close()
