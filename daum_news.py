@@ -121,7 +121,7 @@ while True:
 
     chars = len(titlelist)
     # for b in range(len(chars)):
-    query = "INSERT into t1 values (?, ?, DATETIME('NOW'))"
+    query = "INSERT into t1 values (?, ?, DATETIME('NOW','LOCALTIME'))"
     cs.execute(query,(b, chars))
     conn.commit()
     b += 1
