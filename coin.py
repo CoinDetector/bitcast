@@ -1,29 +1,35 @@
-import sys
+# import sys
+# from urllib.parse import quote
 import re
 import urllib.request
-from urllib.parse import quote
 import requests
 from bs4 import BeautifulSoup
 import time
 from datetime import datetime
 import sqlite3 as lite
+import logging
+from apscheduler.schedulers.blocking import BlockingScheduler
 
-a = ['가상화폐','비트코인','가상화폐 규제','거래소 폐쇄','급락','하락','폭락','떡락','빗썸','압수수색','규제 강화']
+# a = ['가상화폐','비트코인','가상화폐 규제','거래소 폐쇄','급락','하락','폭락','떡락','빗썸','압수수색','규제 강화']
+a = ['평창']
 
-b = 0
-howmany = 0
 
-database_filename = 'test.db'
-conn = lite.connect(database_filename)
-cs = conn.cursor()
+scheduler = BlockingScheduler()
 
-query = "DROP TABLE IF EXISTS t1"
-cs.execute(query)
+# database_filename = 'test.db'
+# conn = lite.connect(database_filename)
+# cs = conn.cursor()
 
-query = 'CREATE TABLE IF NOT EXISTS t1 (id INTEGER PRIMARY_KEY NOT_NULL, Num INTEGER , at DATETIME)'
-cs.execute(query)
+# query = "DROP TABLE IF EXISTS t1"
+# cs.execute(query)
 
-while True:
+# query = 'CREATE TABLE IF NOT EXISTS t1 (id INTEGER PRIMARY_KEY NOT_NULL, Num INTEGER , at DATETIME)'
+# cs.execute(query)
+
+
+def Google():
+    b = 0
+    howmany = 0
     for i in range(len(a)):
         html = requests.get('https://news.google.com/news/search/section/q/{0}/{1}?hl=ko&gl=KR&ned=kr'.format(a[i], a[i])).text
         soup = BeautifulSoup(html, 'html.parser')
@@ -33,18 +39,27 @@ while True:
             x = tag.select('span .d5kXP')
             for ab in x:
                 print(ab.text)
-                p = re.compile('[0-9]{0,1}분 전')
+                p = re.compile('[0-5]{0,1}분 전')
                 m = p.search(ab.text)
-                if m != None:
+                if (m != None) and (len(ab.text) == 4):
                     howmany += 1
 
-    query = "INSERT into t1 values (?, ?, DATETIME('NOW','LOCALTIME'))"
-    cs.execute(query, (b, howmany))
-    conn.commit()
-    b += 1
-    print(howmany)
-    print(m)
-    time.sleep(5)
 
-cs.close()
-conn.close()
+
+    print(howmany)
+
+    return howmany
+    # b += 1
+    # print(Google())
+
+
+logging.basicConfig()
+scheduler.add_job(Google,'interval', seconds = 5)
+scheduler.start()
+
+# query = "INSERT into t1 values (?, ?, DATETIME('NOW','LOCALTIME'))"
+# cs.execute(query, (b, Google()))
+# conn.commit()
+
+# cs.close()
+# conn.close()
