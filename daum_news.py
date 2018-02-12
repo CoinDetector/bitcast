@@ -16,20 +16,13 @@ a = ['가상화폐']
 
 b = 0
 
-database_filename = 'test2.db'
-conn = lite.connect(database_filename)
-cs = conn.cursor()
 
-query = 'CREATE TABLE IF NOT EXISTS t1 (id INTEGER PRIMARY_KEY NOT_NULL, name VARCHAR(255), at DATETIME)'
-cs.execute(query)
-
-while True:
+def daum():
     count = 0
     j=0
     c=0
     before = None
     current = None
-
     for i in range(len(a)):
         for j in range(len(a)):
             r = requests.get('http://search.daum.net/search?w=news&q={0}&p={1}&cluster=n&DA=STC&s=NS&a=STCF&dc=STC&pg=1&r=1&p=1&rc=1&at=more&sd=20180211153455&ed=20180212153455&period=d'.format(a[i],j))
@@ -63,9 +56,8 @@ while True:
 
                 c += 1
 
-        print("총 기사 갯수 :  {0}".format(count))
+        print("다음 총 기사 갯수 :  {0}".format(count))
+        return count
 
-        time.sleep(10)
 
-cs.close()
-conn.close()
+print(daum())
