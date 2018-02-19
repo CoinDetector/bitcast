@@ -6,13 +6,13 @@ import time
 from datetime import datetime
 import sqlite3 as lite
 
-keyword = ['비트코인','가상화폐 규제','거래소 폐쇄','급락','하락','폭락','떡락','빗썸','압수수색','규제 강화']
+a = ['가상화폐 규제','비트코인','가상화폐']
 
 def Google():
     count_time = 0
 
 
-    for i in range(len()):
+    for i in range(len(a)):
         firsttime = True
         url = 'https://www.google.co.kr/search?q={0}&dcr=0&tbm=nws&source=lnt&tbs=qdr:h&sa=X&ved=0ahUKEwjGzri1gJ7ZAhVCU7wKHXEVDk4QpwUIHQ&biw=645&bih=702&dpr=2'
 
@@ -65,7 +65,7 @@ def Google():
         print("*********{0}**********".format(a[i]))
 
     print("\nFinished")
-    # print(count_time)
+    print(count_time)
 
     return count_time
 
