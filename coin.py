@@ -11,10 +11,10 @@ import logging
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 # a = ['가상화폐','비트코인','가상화폐 규제','거래소 폐쇄','급락','하락','폭락','떡락','빗썸','압수수색','규제 강화']
-a = ['평창']
+a = ['google']
 
 
-scheduler = BlockingScheduler()
+#scheduler = BlockingScheduler()
 
 # database_filename = 'test.db'
 # conn = lite.connect(database_filename)
@@ -38,7 +38,6 @@ def Google():
         for tag in lists:
             x = tag.select('span .d5kXP')
             for ab in x:
-                print(ab.text)
                 p = re.compile('[0-5]{0,1}분 전')
                 m = p.search(ab.text)
                 if (m != None) and (len(ab.text) == 4):
@@ -46,16 +45,16 @@ def Google():
 
 
 
-    print(howmany)
+
 
     return howmany
     # b += 1
     # print(Google())
 
 
-logging.basicConfig()
-scheduler.add_job(Google,'interval', seconds = 5)
-scheduler.start()
+#logging.basicConfig()
+#scheduler.add_job(Google,'interval', seconds = 5)
+#scheduler.start()
 
 # query = "INSERT into t1 values (?, ?, DATETIME('NOW','LOCALTIME'))"
 # cs.execute(query, (b, Google()))
