@@ -9,19 +9,19 @@ import sqlite3 as lite
 keyword = ['비트코인','가상화폐 규제','거래소 폐쇄','급락','하락','폭락','떡락','빗썸','압수수색','규제 강화']
 
 
-database_filename = 'test.db'
-conn = lite.connect(database_filename)
-cs = conn.cursor()
+# database_filename = 'test.db'
+# conn = lite.connect(database_filename)
+# cs = conn.cursor()
 
 
-query = "DROP TABLE IF EXISTS t1"
-cs.execute(query)
+# query = "DROP TABLE IF EXISTS t1"
+# cs.execute(query)
 
-query = 'CREATE TABLE IF NOT EXISTS t1 (id INTEGER PRIMARY_KEY NOT_NULL, Google_Num INTEGER , at DATETIME)'
-cs.execute(query)
+# query = 'CREATE TABLE IF NOT EXISTS t1 (id INTEGER PRIMARY_KEY NOT_NULL, Google_Num INTEGER , at DATETIME)'
+# cs.execute(query)
 
-b = 0
-id_num = 0
+# b = 0
+# id_num = 0
 def Google():
 
     google_count = 0
@@ -73,31 +73,31 @@ def Google():
     return google_count
 
 
-while True:
-    query = "INSERT into t1 values (?, ?, DATETIME('NOW','LOCALTIME'))"
-    cs.execute(query, (b, Google()))
-    b += 1
+# while True:
+#     query = "INSERT into t1 values (?, ?, DATETIME('NOW','LOCALTIME'))"
+#     cs.execute(query, (b, Google()))
+#     b += 1
 
 
-    first = cs.execute("SELECT at from t1 limit 1")
-    for row1 in first:
-        row_first = datetime.strptime(row1[0], '%Y-%m-%d %H:%M:%S')
+#     first = cs.execute("SELECT at from t1 limit 1")
+#     for row1 in first:
+#         row_first = datetime.strptime(row1[0], '%Y-%m-%d %H:%M:%S')
 
-    last = cs.execute("SELECT at from t1 ORDER BY at DESC limit 1")
-    for row2 in last:
-        row_last = datetime.strptime(row2[0], '%Y-%m-%d %H:%M:%S')
+#     last = cs.execute("SELECT at from t1 ORDER BY at DESC limit 1")
+#     for row2 in last:
+#         row_last = datetime.strptime(row2[0], '%Y-%m-%d %H:%M:%S')
 
-    diff = row_last-row_first
+#     diff = row_last-row_first
 
-    if diff > timedelta(minutes=2):
-        query = "DELETE from t1 where id=?"
-        cs.execute(query, (id_num,))
-        id_num += 1
+#     if diff > timedelta(minutes=2):
+#         query = "DELETE from t1 where id=?"
+#         cs.execute(query, (id_num,))
+#         id_num += 1
 
-    conn.commit()
-    time.sleep(5)
+#     conn.commit()
+#     time.sleep(5)
 
 
-cs.close()
-conn.close()
+# cs.close()
+# conn.close()
 
