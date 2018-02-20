@@ -7,7 +7,7 @@ from datetime import datetime
 import sqlite3 as lite
 
 
-a = ['가상화폐 규제','비트코인','가상화폐']
+a = ['올림픽']
 
 
 # database_filename = 'test.db'
@@ -101,17 +101,8 @@ def Google():
                     # 다음페이지 저장하기
 
 
-        print("*********{0}**********".format(a[i]))
+
         # 지금까지 어떤 키워드 검색했는지 알려주기
-
-
-
-
-
-# ========================================== while ============================================
-    print("\nFinished")
-    print(count_time)
-
     return count_time
 
 
