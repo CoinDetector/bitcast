@@ -1,4 +1,4 @@
-"""bitcast URL Configuration
+"""Bitcast URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -16,6 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from core import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.login, name='login'),
+    path('welcome/', views.base, name='base'),
+    path('signup/', views.signup, name='signup'),
+    path('logout/', views.logout, name='logout'),
+    path('confirm/', views.confirm_email, name='confirm_email'),
 ]
