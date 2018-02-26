@@ -1,4 +1,4 @@
-"""Bitcast URL Configuration
+"""bitcast URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -14,15 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-from core import views
+from django.urls import path,include
+from django.conf import settings
+from detector import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.login, name='login'),
-    path('welcome/', views.base, name='base'),
-    path('signup/', views.signup, name='signup'),
-    path('logout/', views.logout, name='logout'),
-    path('confirm/', views.confirm_email, name='confirm_email'),
+    path('accounts/',include("accounts.urls")),
+    path('detector/', include("detector.urls", namespace='detector')),
 ]
+

@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+
+{% block title %}{{ keyword.title }}{% endblock %}
+
+{% block content %}
+<h1>{{keyword.title}}이 선택되었습니다.</h1>
+
+<a href="{% url "detector:main" %}" class = "btn btn-default">BACK</a>
+<a href="{% url "detector:keyword_new" keyword.user.pk %}" class = "btn btn-primary">add Keyword</a>
+{% endblock %}

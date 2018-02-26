@@ -6,7 +6,7 @@ import time
 from datetime import datetime, timedelta
 import sqlite3 as lite
 
-keyword = ['비트코인','가상화폐 규제','거래소 폐쇄','급락','하락','폭락','떡락','빗썸','압수수색','규제 강화']
+keyword = ['올림픽']
 
 
 # database_filename = 'test.db'

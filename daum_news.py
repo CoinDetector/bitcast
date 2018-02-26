@@ -1,22 +1,14 @@
 import sys
 import urllib.request
 from urllib.parse import quote
-
 import time
 from datetime import datetime
-
 import requests
 from bs4 import BeautifulSoup as Soup
-
 import sqlite3 as lite
-
 import re
 
-a = ['가상화폐']
-
-b = 0
-
-
+a = ['올림픽']
 def daum():
     count = 0
     j=0
@@ -56,8 +48,8 @@ def daum():
 
                 c += 1
 
-        print("다음 총 기사 갯수 :  {0}".format(count))
+        
         return count
 
 
-print(daum())
+
