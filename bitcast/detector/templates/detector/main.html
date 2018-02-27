@@ -1,0 +1,91 @@
+
+
+
+{% extends "detector/layout.html" %}
+
+{% block header %}
+
+<style type="text/css">
+
+#whiteText {
+    color: #FFFFFF;
+  font-family: Ubuntu-Bold;
+  font-size: 28px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.rounded {
+
+  border-radius: .25rem!important;
+  margin-left: 25%;
+    margin-top: 30px;
+}
+
+#keywordForm  {
+
+
+
+}
+
+span {
+    display: inline-block;
+    width: 50%;
+    height: 30%;
+    margin: 6px;
+    background-color: #FFFFFF;
+    text-align: center;
+  }
+
+
+</style>
+
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container-login100" style="background-image: url({% static 'images/bg-01.jpg' %});">
+
+  <div class="container">
+    <h2 id='whiteText'>Keyword</h2>
+
+    <div>
+
+      <div class="list-group" paddding="50%">
+
+       {% for keyword in keyword_list %}
+      <a href="{% url "detector:keyword_detail" keyword.pk %} " class="list-group-item list-group-item-action" disabled>{{keyword.title}}</a>
+      {% endfor %}
+    </div>
+
+    </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+{# <ul>
+    {% for keyword in keyword_list %}
+  <li>
+      <a href="{% url "detector:keyword_detail" keyword.pk %}">
+        {{keyword.title}}
+  </li>
+  {% endfor %}
+</ul> #}
