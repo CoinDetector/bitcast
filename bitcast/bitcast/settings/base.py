@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'detector',
     'accounts',
+    'Bitcast',
+    'core',
 ]
 
 MIDDLEWARE = [
