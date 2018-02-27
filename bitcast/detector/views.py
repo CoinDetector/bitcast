@@ -21,7 +21,7 @@ def main(request):
 
 def keyword_detail(request, pk):
     keyword = get_object_or_404(Keyword, pk=pk)
-    return render(request,'detector/keyword_detail.html', {
+    return render(request,'detector/Count_Chart.html', {
         'keyword': keyword,
         })
 

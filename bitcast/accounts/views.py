@@ -26,8 +26,6 @@ def signup(request):
             keyword.update()
             keyword[0].users.add(user.pk)
 
-
-
         else:
             print("자식아")
             sample = Keyword()
