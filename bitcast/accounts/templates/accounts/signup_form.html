@@ -1,9 +1,51 @@
 
 {% extends "accounts/layout.html" %}
 {% block content %}
-<form method="post" action=".">{% csrf_token %}
-    {{ form.as_table }}
-    <input type="submit" value="register" />
-</form>
+<div class="limiter">
+    <div class="container-login100" style="background-image: url({% static 'images/bg-01.jpg' %});">
 
+      <div class="wrap-login100 p-t-30 p-b-50">
+        <span class="login100-form-title p-b-42">
+          SIGN UP
+        </span>
+        <form class="login100-form validate-form p-b-33 p-t-5" action="" method="post">
+          {% csrf_token %}
+          {{ form.as_fieldset}}
+
+          <div class="wrap-input100 validate-input" data-validate = "Enter username">
+            <input class="input100" type="text" name="username" placeholder="User name">
+            <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+
+          </div>
+
+          <div class="wrap-input100 validate-input" data-validate="Enter password">
+            <input class="input100" type="password" name="password1" placeholder="Password">
+            <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input" data-validate="Enter password">
+            <input class="input100" type="Password" name="password2" placeholder="PasswordConfirm">
+            <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input" data-validate="Enter password">
+            <input class="input100" type="text" name="phone_number" placeholder="phoneNumber">
+            <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+          </div>
+
+
+          <div class="container-login100-form-btn m-t-35">
+            <button class="login100-form-btn" type="submit">
+              GET START
+            </button>
+
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="dropDownSelect1"></div>
 {% endblock %}

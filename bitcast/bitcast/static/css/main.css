@@ -202,6 +202,12 @@ iframe {
   background-color: #fff;
 }
 
+.login100-f-no_radius {
+  width: 100%;
+  border-bottom: 1px solid #e6e6e6;
+  background-color: #fff;
+}
+
 .login100-form-logo {
   font-size: 60px;
   color: #333333;

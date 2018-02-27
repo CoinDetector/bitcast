@@ -1,5 +1,5 @@
 import os
-
+PROJECT_DIR  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
@@ -118,7 +118,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'accounts', 'static'),
+    os.path.join(BASE_DIR, 'bitcast', 'static'),
+     os.path.join(BASE_DIR, 'accounts', 'static'),
+      os.path.join(BASE_DIR, 'detector', 'static'),
 ]
 
 

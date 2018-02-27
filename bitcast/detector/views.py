@@ -9,7 +9,9 @@ User = get_user_model()
 
 @login_required
 def main(request):
-    keyword_list = Keyword.objects.filter(user__pk=request.user.pk)
+    keyword_list = Keyword.objects.filter(users=request.user.id)
+    print(keyword_list)
+    print(request.user.id)
 
     return render(request,'detector/main.html',{
 
